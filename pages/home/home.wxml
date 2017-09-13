@@ -1,0 +1,93 @@
+<!--pages/home.wxml-->
+<view>
+  <view class="banner-block">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{host}}{{item.imgurl}}" class="slide-image" mode='aspectFill' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class='menu-block clear'>
+    <ul>
+      <li>
+        <i class="idx-menu-icon m-1"></i>
+        <span class="idx-menu-txt">限时拼单</span>
+      </li>
+      <li>
+        <i class="idx-menu-icon m-2"></i>
+        <span class="idx-menu-txt">现货速达</span>
+      </li>
+      <li>
+        <i class="idx-menu-icon m-3"></i>
+        <span class="idx-menu-txt">母婴童装</span>
+      </li>
+      <li>
+        <i class="idx-menu-icon m-4"></i>
+        <span class="idx-menu-txt">海淘食品</span>
+      </li>
+      <li>
+        <i class="idx-menu-icon m-5"></i>
+        <span class="idx-menu-txt">保健品</span>
+      </li>
+      <li>
+        <i class="idx-menu-icon m-6"></i>
+        <span class="idx-menu-txt">护肤彩妆</span>
+      </li>
+      <li>
+        <i class="idx-menu-icon m-7"></i>
+        <span class="idx-menu-txt">生活用品</span>
+      </li>
+      <li>
+        <i class="idx-menu-icon m-8"></i>
+        <span class="idx-menu-txt">服饰鞋包</span>
+      </li>
+    </ul>
+  </view>
+  <view class='idx-item-list flex-item'>
+    <block wx:for="{{idxItemlist}}">
+      <view class="idx-item">
+        <dl class="idx-item-head">
+          <dt>
+            <span>{{item.ctype==1?"":"$"}}{{item.target}}{{item.ctype==1?"人团":"团"}}</span>
+          </dt>
+          <dd class="ellipsis">{{item.title}}</dd>
+        </dl>
+        <div class="idx-item-poster">
+          <image mode='aspectFit' src="{{host}}{{item.imgurl}}">
+          </image>
+        </div>
+        <div class="idx-item-bottom">
+          <div>
+            <div class="idx-item-col1">
+              已有
+              <i>{{item.userheadimg.length}}</i>人拼单
+              <!-- <i>10</i>人达成 -->
+            </div>
+            <div class="idx-item-col2">
+              <a href="page/act.html?id=10" class="btn">去拼单</a>
+            </div>
+          </div>
+          <div>
+            <div class="idx-item-col1">
+              <block wx:for="{{item.userheadimg}}">
+                <span class="idx-item-person"></span>
+              </block>
+            </div>
+            <div class="idx-item-col2">
+              <!-- {{item.ltimestr}} -->
+              <template is="letime" data="{{...item.ltimestr}}"/>
+            </div>
+          </div>
+        </div>
+
+      </view>
+    </block>
+  </view>
+</view>
+
+<template name="letime">
+  剩<i>{{day}}</i>天<i>{{hour}}</i>小时<i>{{min}}</i>分
+</template>
